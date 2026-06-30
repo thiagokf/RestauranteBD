@@ -113,6 +113,7 @@ CREATE TABLE IF NOT EXISTS ItensPedido (
     pedido INT NOT NULL,
     item INT NOT NULL,
     quantidade INT NOT NULL,
+    descricao VARCHAR(100),
     PRIMARY KEY (pedido, item),
     FOREIGN KEY (pedido) REFERENCES Pedidos(id),
     FOREIGN KEY (item) REFERENCES Itens(id)

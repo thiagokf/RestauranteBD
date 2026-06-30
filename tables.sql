@@ -77,6 +77,8 @@ CREATE TABLE IF NOT EXISTS Contas (
     valor_total NUMERIC(10,2) NOT NULL,
     valor_pedido NUMERIC(10,2) NOT NULL,
     taxa_servico NUMERIC(10,2) NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'Aberta'
+        CHECK (status IN ('Aberta', 'Paga')),
     FOREIGN KEY (pedido) REFERENCES Pedidos(id)
 );
 

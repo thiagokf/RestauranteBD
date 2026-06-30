@@ -18,6 +18,11 @@ BEGIN
             ON ip.item = i.id
         WHERE ip.pedido = NEW.id;
 
+        -- Caso o pedido não possua itens
+        IF valorPedido IS NULL THEN
+            valorPedido := 0;
+        END IF;
+
         -- Calcula 10% de serviço
         taxa := valorPedido * 0.10;
 
@@ -37,8 +42,6 @@ BEGIN
             valorPedido,
             taxa
         );
-        
-        -- Atualiza comissão do garcom
         UPDATE Garcons
         SET comissao = comissao + taxa
         WHERE codga = NEW.garcom;

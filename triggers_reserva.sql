@@ -19,7 +19,8 @@ EXECUTE FUNCTION fazer_reserva();
 CREATE OR REPLACE FUNCTION concluir_reserva()
 RETURNS TRIGGER AS $$
 BEGIN
-    IF NEW.status = 'Concluida' THEN
+    IF OLD.status <> 'Concluida'
+      AND NEW.status = 'Concluida' THEN
         UPDATE Mesas
         SET status = 'Ocupada'
         WHERE numero = NEW.mesa;
@@ -38,7 +39,8 @@ EXECUTE FUNCTION concluir_reserva();
 CREATE OR REPLACE FUNCTION cancelar_reserva()
 RETURNS TRIGGER AS $$
 BEGIN
-  IF NEW.status = 'Cancelada' THEN
+  IF OLD.status <> 'Cancelada'
+   AND NEW.status = 'Cancelada' THEN
     UPDATE Mesas
     SET status = 'Disponivel'
     WHERE numero = NEW.mesa;
@@ -52,3 +54,4 @@ CREATE TRIGGER cancelarReserva
 AFTER UPDATE of status ON Reservas
 FOR EACH ROW
 EXECUTE FUNCTION cancelar_reserva();
+

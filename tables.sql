@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS Colaboradores (
     cpf CHAR(11) NOT NULL UNIQUE,
     nome VARCHAR(100) NOT NULL,
     salario NUMERIC(10,2) NOT NULL,
+    email VARCHAR(100) NOT NULL,
     data_admissao DATE NOT NULL,
     Gerente INT,
     FOREIGN KEY (Gerente) REFERENCES Gerentes(codge)

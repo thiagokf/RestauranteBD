@@ -1,5 +1,5 @@
 # RestauranteBD
-Projeto produzido como trabalho final da matéria de **Banco de dados I**.
+Projeto produzido como trabalho final da matéria de **Banco de dados I**. <br>
 O projeto consiste na estruturação de um Dominio, modelagem conceitual, lógica e fisica de um banco de dados para um restaurante, buscando atender todas as dinamicas do estabelecimento.
 
 ## Dominio

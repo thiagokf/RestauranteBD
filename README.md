@@ -22,16 +22,16 @@ Algumas relações, vistas na modelagem conceitual, foram modelados de formas di
 ## Modelagem Física
 Para finalizar o projeto, foi feita a implementação em PostgreSQL em cima das modelagens feitas anteriormente. A modelagem fisica pode ser conferida na pasta SQL do repositório.
 
-### Triggers
+### - Triggers
 Nessa etapa, além das tabelas, foi implementado algumas triggers que faziam mais sentido para a dinâmica de um restaurante.
-#### Reservas
+#### 1 - Reservas
   Para respeitar a dinâmica de reservas do restaurante, quando se faz uma inserção na tabela Reservas, uma **trigger** é acionada para mudar o status da mesa escolhida para “Reservada” automaticamente, atualizando a situação da mesa. Após a criação da Reserva, outras duas triggers foram implementadas para tratar o seu andamento (update do status da Reserva). Caso o valor mude para "Concluida", indicando que a reserva foi efetivada, uma trigger é chamada para mudar o status da mesa para "Ocupada". Pelo contrário, caso o valor mude para "Cancelada", outra trigger é chamada para mudar o status da mesa para "Disponivel" novamente, liberando ela para receber possíveis novas reservas ou ocupações.<br>
 
-#### Geração de Contas
+#### 2 - Geração de Contas
   Outro caso é na geração de uma conta. A regra de negócio do banco diz, “Quando um pedido é concluído, ele gera uma conta”. Para essa frase fazer sentido, foi
 implementado uma trigger que cria a conta do pedido após o status do próprio mudar para “Finalizado”. A conta é gerada com o valor de todos os itens do pedido, valor da taxa de serviço e o valor total a ser pago. Para finalizar, a trigger adiciona ao atributo comissao do Garcom o valor da taxa de serviço gerado pelo pedido.
 
-#### Pagamentos da Conta
+#### 3 - Pagamentos da Conta
   O ultimo caso implementado é no pagamento da conta. Como diz a regra de negócio do banco, “Uma conta pode ser paga por mais de uma pessoa”. Logo, para isso fazer sentido, a conta só é fechada quando a soma dos valores pagos a ela é igual ao seu valor total, caso seja pago por mais de uma pessoa (gere mais de um pagamento). Então, quando se insere um registro de pagamento na tabela Pagamento, uma trigger é acionada para verificar se a conta for totalmente paga. Se sim, muda o status da Conta para “Paga”, se não, mantém o status “Aberta”.
 
 ## Conclusão

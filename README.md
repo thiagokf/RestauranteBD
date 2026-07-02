@@ -1,15 +1,32 @@
-# RestauranteBD
+<img width="256" height="93" alt="image" src="https://github.com/user-attachments/assets/8593f8d0-ee80-417e-9d69-d798506e1a5f" /># RestauranteBD
 Projeto produzido como trabalho final da matéria de **Banco de dados I**. <br>
 O projeto consiste na estruturação de um Dominio, modelagem conceitual, lógica e fisica de um banco de dados para um restaurante, buscando atender todas as dinamicas do estabelecimento.
 
 ## Dominio
-O dominio do restaurante dá um norte de como modelar o banco da forma que queremos que ele funcione. <br>
+  O dominio do restaurante dá um norte de como modelar o banco da forma que queremos que ele funcione. <br>
 Para melhor entendimento das modelagens do projeto, recomendo fazer a [leitura do dominio](https://github.com/thiagokf/RestauranteBD/blob/main/Dominio%20-%20Restaurante.pdf)
 
 ## Modelagem conceitual (ER)
-A modelagem ER do banco nos permite começar a entender como sera a estrutura do banco, definindo as entidades, seus atributos e como elas vão se relacionar.
+  A modelagem ER do banco nos permite começar a entender como sera a estrutura do banco, definindo as entidades, seus atributos e como elas vão se relacionar.
 No projeto, podemos ver algumas conceitos da modelagem ER, como:
   - Especificações de colaboradores
   - A entidade associativa Pedidos
     - que faz a relação entre cliente e garçom, mas faz relacionamento com Conta, na geração, e ItensPedido, que fazem parte daquele pedido.
 <img width="1245" height="833" alt="image" src="https://github.com/user-attachments/assets/4af9fc50-6698-4530-bdfa-43cd30bb8cc1" />
+
+## Modelagem Lógica
+  A modelagem lógica nos dá uma melhor visão de como será a estrutura física do banco de dados. <br>
+Algumas relações, vistas na modelagem conceitual, foram modelados de formas diferentes. A relação de Responsável, por exemplo, foi representada apenas com a adição de um atributo de chave estrangeira (Gerente) na tabela de Colaboradores, pois mantem a lógica, a estrutura do banco e evita a implementação de mais uma tabela. As relações de Reserva, ItemPedido e Pedidos foram representadas por tabelas, já que seria a melhor forma de representação.
+<img width="1365" height="656" alt="image" src="https://github.com/user-attachments/assets/acc6a018-4ef3-4986-aa3a-9f4cf1aed0c2" />
+
+## Modelagem Física
+Para finalizar o projeto, foi feita a implementação em PostgreSQL em cima das modelagens feitas anteriormente. A modelagem fisica pode ser conferida na pasta SQL do repositório.
+
+### Triggers
+Nessa etapa, além das tabelas, foi implementado algumas triggers que faziam mais sentido para a dinâmica de um restaurante.
+#### Reservas
+  Ao fazer uma inserção na tabela Reservas, uma trigger é acionada para mudar o status da mesa escolinha para “Reservada” automaticamente, atualizando a situação da mesa. O mesmo acontece quando uma reserva é concluída (mesa fica ocupada), ou cancelada (mesa volta a estar disponível). <br>
+#### Geração de Contas
+	Outro caso é na geração de uma conta. A regra de negócio do banco diz, “quando um pedido é concluído, ele gera uma conta”. Para essa frase fazer sentido, foi implementado uma trigger que cria a conta do pedido após o status do próprio mudar para “Finalizado”. A conta é gerada com o valor de todos os itens do pedido, valor da taxa de serviço e o valor total a ser pago. Para finalizar, a trigger adiciona ao atributo comissao do Garcom o valor da taxa de serviço gerado pelo pedido. <br>
+#### Pagamentos da Conta
+	O ultimo caso implementado é no pagamento da conta. Como diz a regra de negócio do banco, “uma conta pode ser paga por mais de uma pessoa”. Logo, para isso fazer sentido, a conta só é fechada quando a soma dos valores pagos a ela é igual ao valor total dela, caso seja pago por mais de uma pessoa (gere mais de um pagamento). Então, quando se insere um pagamento na tabela Pagamento, uma trigger é acionada para verificar se a conta for totalmente paga. Se sim, muda o status da Conta para “Paga”, se não, mantém o status “Aberta”.

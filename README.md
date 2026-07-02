@@ -3,7 +3,7 @@ Projeto produzido como trabalho final da matéria de **Banco de dados I**. <br>
 O projeto consiste na estruturação de um Dominio, modelagem conceitual, lógica e fisica de um banco de dados para um restaurante, buscando atender todas as dinamicas do estabelecimento.
 
 ## Dominio
-O dominio do restaurante dá um norte de como modelar o banco da forma que queremos que ele funcione.
+O dominio do restaurante dá um norte de como modelar o banco da forma que queremos que ele funcione. <br>
 Para melhor entendimento das modelagens do projeto, recomendo fazer a [leitura do dominio](https://github.com/thiagokf/RestauranteBD/blob/main/Dominio%20-%20Restaurante.pdf)
 
 ## Modelagem conceitual (ER)

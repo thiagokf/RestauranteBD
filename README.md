@@ -5,7 +5,7 @@ O projeto consiste na estruturação de um Dominio, modelagem conceitual, lógic
 ## Dominio
 O dominio do restaurante dá um norte de como modelar o banco da forma que queremos que ele funcione.
 
-- Domínio do Restaurante
+- Domínio do Restaurante:
 O salão do restaurante possui várias mesas. Cada mesa tem um número identificador
 único, sua capacidade máxima de lugares e um status (Disponível, Ocupada ou
 Reservada). Uma mesa pode possuir várias reservas ao longo do tempo, porém não

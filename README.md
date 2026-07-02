@@ -1,4 +1,4 @@
-<img width="256" height="93" alt="image" src="https://github.com/user-attachments/assets/8593f8d0-ee80-417e-9d69-d798506e1a5f" /># RestauranteBD
+# RestauranteBD
 Projeto produzido como trabalho final da matéria de **Banco de dados I**. <br>
 O projeto consiste na estruturação de um Dominio, modelagem conceitual, lógica e fisica de um banco de dados para um restaurante, buscando atender todas as dinamicas do estabelecimento.
 

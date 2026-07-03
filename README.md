@@ -36,9 +36,7 @@ implementado uma trigger que cria a conta do pedido após o status do próprio m
 
 ## Conclusão
 
-## Conclusão
-
-O desenvolvimento deste projeto permitiu aplicar, na prática, os principais conceitos estudados na disciplina de Banco de Dados I, desde a modelagem conceitual até a implementação física em PostgreSQL.
+O desenvolvimento deste projeto permitiu aplicar, na prática, os principais conceitos estudados na disciplina de Banco de Dados I, desde a modelagem conceitual até a implementação física.
 
 Além da estruturação do banco de dados, foram implementadas regras de negócio por meio de triggers, automatizando processos importantes como o gerenciamento de reservas, a geração de contas e o controle de pagamentos. Dessa forma, o projeto busca representar de maneira fiel a dinâmica de funcionamento de um restaurante, garantindo a integridade e a consistência dos dados.
 
